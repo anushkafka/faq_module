@@ -1,18 +1,9 @@
-import Article from "./Articles";
+import ReactDOM from "react-dom";
+import React from "react";
+import App from "./App";
 
 export function initialize(element) {
-  const article = new Article();
-
-  article.getArticles()
-    .then(articlesJson => {
-      articlesJson.articles.forEach(article => {
-        const articleElement = document.createElement("div");
-        console.log(article);
-        articleElement.innerHTML = article.body;
-
-        element.appendChild(articleElement);
-      });
-    });
+  ReactDOM.render(React.createElement(App), element);
 }
 
 window.initializeArticles = initialize;
