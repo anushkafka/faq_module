@@ -1,7 +1,18 @@
-import App from "./App";
+import Article from "./Articles";
 
-export function initialize() {
-  const app = new App();
+export function initialize(element) {
+  const article = new Article();
+
+  article.getArticles()
+    .then(articlesJson => {
+      articlesJson.articles.forEach(article => {
+        const articleElement = document.createElement("div");
+        console.log(article);
+        articleElement.innerHTML = article.body;
+
+        element.appendChild(articleElement);
+      });
+    });
 }
 
-initialize();
+window.initializeArticles = initialize;
