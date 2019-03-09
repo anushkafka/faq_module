@@ -41,7 +41,11 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Pagination page={this.state.page} perPage={this.state.pageCount} />
+        <Pagination
+          page={this.state.page}
+          perPage={this.state.perPage}
+          pageCount={this.state.pageCount}
+        />
         <Articles articles={this.state.articles} />
       </div>
     );
