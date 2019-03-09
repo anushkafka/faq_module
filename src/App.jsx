@@ -1,4 +1,6 @@
 import React from "react";
+import Pagination from "./components/Pagination";
+import Articles from "./components/Articles";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,9 +20,14 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getArticles().then(articles => {
+    this.getArticles().then(articlesResponse => {
+      console.log(articlesResponse);
+
       this.setState({
-        articles: articles
+        articles: articlesResponse.articles,
+        page: articlesResponse.page,
+        perPage: articlesResponse.per_page,
+        pageCount: articlesResponse.pageCount
       });
     });
   }
@@ -30,12 +37,12 @@ export default class App extends React.Component {
       return <span>Loading...</span>;
     }
 
+    console.log(this.state.articles);
+
     return (
       <div>
-        <select>
-          <option key="1" />
-        </select>
-        <div>{JSON.stringify(this.state)}</div>
+        <Pagination page={this.state.page} perPage={this.state.pageCount} />
+        <Articles articles={this.state.articles} />
       </div>
     );
   }
