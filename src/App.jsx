@@ -27,7 +27,7 @@ export default class App extends React.Component {
         articles: articlesResponse.articles,
         page: articlesResponse.page,
         perPage: articlesResponse.per_page,
-        pageCount: articlesResponse.pageCount
+        pageCount: articlesResponse.page_count
       });
     });
   }

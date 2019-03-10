@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/anushkafka/zendesk_faq_module#readme",
   "dependencies": {
+    "lodas": "^1.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   }
