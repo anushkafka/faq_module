@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+  font-size: 14px;
+}
+
+.ArticleApp button {
+  font-size: 12px;
+  padding: 3px 10px;
+  margin: 3px;
+}
+
+.ArticleApp .ArticleCard {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.ArticleApp .Pagination>* {
+  margin: 5px;
+}

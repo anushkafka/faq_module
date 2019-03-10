@@ -5,25 +5,31 @@ export default class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   currentPage = null,
-    //   pageCount = this.props.pageCount,
-    //   perPage = this.props.perPage
-    // }
+    this.handlePrevious = this.handlePrevious.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
-  setCurrentPage() {}
+  handlePrevious() {
+    this.props.onNewPage(this.props.page - 1);
+  }
+
+  handleNext() {
+    this.props.onNewPage(this.props.page + 1);
+  }
 
   render() {
-    let pageNumbers = [];
-
-    _.times(this.props.pageCount, function(i) {
-      pageNumbers.push(<span style={{ margin: "5px" }}>{i.toString()}</span>);
-    });
+    const shouldDisablePrevious = this.props.page === 1;
+    const shouldDisableNext = this.props.page === this.props.pageCount;
 
     return (
-      <div>
-        <div>{pageNumbers}</div>
+      <div className="Pagination">
+        <button onClick={this.handlePrevious} disabled={shouldDisablePrevious}>
+          Previous
+        </button>
+        <span>Page: {this.props.page}</span>
+        <button onClick={this.handleNext} disabled={shouldDisableNext}>
+          Next
+        </button>
       </div>
     );
   }
