@@ -20,5 +20,8 @@
     "lodas": "^1.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
+  },
+  "devDependencies": {
+    "jest": "^24.3.1"
   }
 }
