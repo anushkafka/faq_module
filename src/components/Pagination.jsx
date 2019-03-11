@@ -23,11 +23,19 @@ export default class Pagination extends React.Component {
 
     return (
       <div className="Pagination">
-        <button onClick={this.handlePrevious} disabled={shouldDisablePrevious}>
+        <button
+          className="previous-btn"
+          onClick={this.handlePrevious}
+          disabled={shouldDisablePrevious}
+        >
           Previous
         </button>
         <span>Page: {this.props.page}</span>
-        <button onClick={this.handleNext} disabled={shouldDisableNext}>
+        <button
+          className="next-btn"
+          onClick={this.handleNext}
+          disabled={shouldDisableNext}
+        >
           Next
         </button>
       </div>
