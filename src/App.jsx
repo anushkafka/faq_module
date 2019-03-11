@@ -1,35 +1,41 @@
 import React from "react";
 import Pagination from "./components/Pagination";
 import Articles from "./components/Articles";
+import api from "./utility/api";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.loadArticles = this.loadArticles.bind(this);
+    this.handleNewPage = this.handleNewPage.bind(this);
 
     this.state = {
       articles: null
     };
   }
 
-  getArticles() {
-    return fetch(
-      "https://support.zendesk.com/api/v2/help_center/en-us/articles.json"
-    ).then(function(response) {
-      return response.json();
+  // 1. get articles from api
+  // 2. and assign articles to state
+  loadArticles(page) {
+    api.getArticlesFromAPI(page).then(response => {
+      const newState = {
+        articles: response.articles,
+        page: response.page,
+        perPage: response.per_page,
+        pageCount: response.page_count
+      };
+
+      this.setState(newState);
     });
   }
 
   componentDidMount() {
-    this.getArticles().then(articlesResponse => {
-      console.log(articlesResponse);
+    this.loadArticles(1);
+  }
 
-      this.setState({
-        articles: articlesResponse.articles,
-        page: articlesResponse.page,
-        perPage: articlesResponse.per_page,
-        pageCount: articlesResponse.page_count
-      });
-    });
+  handleNewPage(page) {
+    this.loadArticles(page);
   }
 
   render() {
@@ -37,14 +43,13 @@ export default class App extends React.Component {
       return <span>Loading...</span>;
     }
 
-    console.log(this.state.articles);
-
     return (
-      <div>
+      <div className="ArticleApp">
         <Pagination
           page={this.state.page}
           perPage={this.state.perPage}
           pageCount={this.state.pageCount}
+          onNewPage={this.handleNewPage}
         />
         <Articles articles={this.state.articles} />
       </div>
