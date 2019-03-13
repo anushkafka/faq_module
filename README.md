@@ -10,6 +10,12 @@
 
 To run a demo which will bundle the Javacript files and open a dev server, do `npm run demo`.
 
+## Running the test
+
+```
+npm test
+```
+
 ## Building the Javscript Bundle
 
 1. After cloning from git, `npm install` to install the dependencies.
